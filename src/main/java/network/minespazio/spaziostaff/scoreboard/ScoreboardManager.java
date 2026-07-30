@@ -140,8 +140,12 @@ public class ScoreboardManager implements Listener {
         long sessionMillis = System.currentTimeMillis() - loginTime;
         String sessionTime = formatDuration(sessionMillis);
 
-        return color(text
+        String rank = network.minespazio.spaziostaff.hooks.LuckPermsHook.getRank(player);
+
+        String formatted = text
                 .replace("{player}", player.getName())
+                .replace("{rank}", rank)
+                .replace("{group}", rank)
                 .replace("{staffmode}", "&aActivado")
                 .replace("{vanish}", isVanished ? "&aActivado" : "&cDesactivado")
                 .replace("{online}", String.valueOf(onlineCount))
@@ -149,7 +153,11 @@ public class ScoreboardManager implements Listener {
                 .replace("{staff_online}", String.valueOf(staffOnline))
                 .replace("{tps}", TpsTracker.getFormattedTps())
                 .replace("{session_time}", sessionTime)
-                .replace("{playtime}", sessionTime));
+                .replace("{playtime}", sessionTime);
+
+        formatted = network.minespazio.spaziostaff.hooks.LuckPermsHook.setPlaceholders(player, formatted);
+
+        return color(formatted);
     }
 
     private String formatDuration(long millis) {

@@ -44,7 +44,8 @@ Inspirado en los mejores sistemas de administración como *AquaCore*, ofrece her
 
 - 📊 **Scoreboard de Staff Exclusiva**:
   - Aparece de forma automática únicamente al activar el Modo Staff y se restaura el scoreboard anterior al desactivarlo.
-  - Muestra el estado del Modo Staff, estado de Vanish, número de jugadores online, cantidad de staffs online, TPS en tiempo real del servidor y contador de tiempo en sesión.
+  - Muestra tu Rango de **LuckPerms** (`{rank}` / `{group}`), estado del Modo Staff, estado de Vanish, jugadores online, staffs online, TPS en tiempo real del servidor y tiempo en sesión.
+  - Integración nativa con **PlaceholderAPI** (soporta `%luckperms_primary_group_name%`, `%luckperms_prefix%`, etc.).
 
 ---
 
@@ -182,6 +183,7 @@ scoreboard:
   lines:
     - "&7&m------------------------"
     - "&fStaff: &a{player}"
+    - "&fRango: &e{rank}"
     - "&fModo Staff: &a{staffmode}"
     - "&fVanish: {vanish}"
     - ""
