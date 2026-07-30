@@ -1,0 +1,111 @@
+# Configuración General de SpazioStaff
+prefix: "&7[&bSpazioStaff&7] "
+
+messages:
+  no-permission: "&cNo tienes permisos para usar este comando."
+  only-players: "&cEste comando solo puede ser ejecutado por jugadores."
+  player-not-found: "&cJugador no encontrado o desconectado."
+
+# Command Spy
+cmdspy:
+  prefix: "&7[&cCommandSpy&7] "
+  enabled: "&aCommand Spy activado correctamente."
+  disabled: "&cCommand Spy desactivado correctamente."
+  format: "{prefix}&f{player}&7: &e{command}"
+
+ignored-commands:
+  - "/cmdspy"
+  - "/cspy"
+  - "/commandspy"
+  - "/login"
+  - "/register"
+  - "/pass"
+  - "/changepassword"
+  - "/l"
+  - "/reg"
+
+# Vanish
+vanish:
+  enabled: "&aAhora estas en Vanish (Invisible)."
+  disabled: "&cYa no estas en Vanish (Visible)."
+  staff-see-vanished: true
+
+# Freeze
+freeze:
+  frozen-target-msg:
+    - "&c&l=========================================="
+    - "&c&lHAS SIDO CONGELADO POR UN STAFF"
+    - "&eSi te desconectas seras &cSANCIONADO PERMANENTEMENTE&e."
+    - "&ePor favor unete a nuestro Discord para revision."
+    - "&c&l=========================================="
+  unfrozen-target-msg: "&aHas sido descongelado por el staff."
+  frozen-staff-notify: "&aHas congelado a &e{player}&a."
+  unfrozen-staff-notify: "&aHas descongelado a &e{player}&a."
+  cannot-move: "&c&lPROHIBIDO MOVERTE: &cEstas congelado."
+
+# Staff Mode Items & Setup
+staffmode:
+  enabled: "&aModo Staff ACTIVADO."
+  disabled: "&cModo Staff DESACTIVADO."
+  
+  items:
+    vanish-on:
+      slot: 0
+      material: "LIME_DYE"
+      name: "&a&lVanish: ACTIVADO &7(Click derecho)"
+      lore:
+        - "&7Click derecho para hacerte visible."
+    vanish-off:
+      slot: 0
+      material: "GRAY_DYE"
+      name: "&c&lVanish: DESACTIVADO &7(Click derecho)"
+      lore:
+        - "&7Click derecho para hacerte invisible."
+    
+    freeze:
+      slot: 1
+      material: "PACKED_ICE"
+      name: "&b&lCongelar Jugador &7(Click en Jugador)"
+      lore:
+        - "&7Click en un jugador para congelarlo o descongelarlo."
+
+    phase:
+      slot: 2
+      material: "COMPASS"
+      name: "&e&lBrújula Phase &7(Click derecho/izquierdo)"
+      lore:
+        - "&7Click para traspasar bloques/paredes."
+
+    inspect:
+      slot: 4
+      material: "BOOK"
+      name: "&6&lInspeccionar Inventario &7(Click en Jugador)"
+      lore:
+        - "&7Click en un jugador para ver su inventario y armadura."
+
+    stats:
+      slot: 6
+      material: "NETHER_STAR"
+      name: "&d&lStats del Jugador &7(Click en Jugador)"
+      lore:
+        - "&7Click en un jugador para ver sus estadísticas."
+
+    online-list:
+      slot: 7
+      material: "PLAYER_HEAD"
+      name: "&3&lLista de Staff y Jugadores &7(Click derecho)"
+      lore:
+        - "&7Abre el menú de jugadores y staff online."
+
+    random-tp:
+      slot: 8
+      material: "FEATHER"
+      name: "&9&lTeleport Aleatorio &7(Click derecho)"
+      lore:
+        - "&7Telepórtate a un jugador aleatorio."
+
+# Configuración de GUIs
+gui:
+  inspect-title: "&8Inspeccionando: &1{player}"
+  online-list-title: "&8Jugadores & Staff Online"
+  stats-title: "&8Stats de: &1{player}"

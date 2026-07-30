@@ -1,0 +1,53 @@
+name: SpazioStaff
+version: 1.0.0
+main: network.minespazio.spaziostaff.SpazioStaff
+api-version: '1.20'
+description: Plugin de Staff System y Command Spy completo para Spigot/Paper.
+author: MineSpazio
+
+commands:
+  cmdspy:
+    description: Activa o desactiva la observacion de comandos de otros jugadores.
+    aliases: [cspy, commandspy]
+    usage: /cmdspy [on|off]
+    permission: spaziostaff.cmdspy
+    permission-message: "&cNo tienes permiso para utilizar este comando."
+  staffmode:
+    description: Activa o desactiva el modo staff.
+    aliases: [mod, staff]
+    usage: /staffmode [jugador]
+    permission: spaziostaff.staffmode
+    permission-message: "&cNo tienes permiso para utilizar este comando."
+  vanish:
+    description: Activa o desactiva el modo vanish.
+    aliases: [v]
+    usage: /vanish [on|off]
+    permission: spaziostaff.vanish
+    permission-message: "&cNo tienes permiso para utilizar este comando."
+  freeze:
+    description: Congela a un jugador para revision.
+    aliases: [ss, freezear]
+    usage: /freeze <jugador>
+    permission: spaziostaff.freeze
+    permission-message: "&cNo tienes permiso para utilizar este comando."
+  unfreeze:
+    description: Descongela a un jugador.
+    aliases: [unss, desfreezear]
+    usage: /unfreeze <jugador>
+    permission: spaziostaff.freeze
+    permission-message: "&cNo tienes permiso para utilizar este comando."
+
+permissions:
+  spaziostaff.cmdspy:
+    description: Permite utilizar Command Spy.
+    default: op
+  spaziostaff.staffmode:
+    description: Permite entrar en Modo Staff.
+    default: op
+  spaziostaff.vanish:
+    description: Permite usar Vanish.
+    default: op
+  spaziostaff.freeze:
+    description: Permite congelar o descongelar jugadores.
+    default: op
+
