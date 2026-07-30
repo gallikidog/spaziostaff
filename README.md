@@ -42,9 +42,9 @@ Inspirado en los mejores sistemas de administración como *AquaCore*, ofrece her
 - 🦅 **Teleport Aleatorio (Random TP)**:
   - Ítem de pluma que te teletransporta instantáneamente a un jugador en línea no-staff al azar.
 
-- 🕵️ **Command Spy (`/cmdspy`, `/cspy`)**:
-  - Monitorea los comandos ejecutados por los jugadores en tiempo real.
-  - Filtro de comandos ignorados (ej. `/login`, `/register`, `/pass`) para proteger contraseñas y privacidad.
+- 📊 **Scoreboard de Staff Exclusiva**:
+  - Aparece de forma automática únicamente al activar el Modo Staff y se restaura el scoreboard anterior al desactivarlo.
+  - Muestra el estado del Modo Staff, estado de Vanish, número de jugadores online, cantidad de staffs online, TPS en tiempo real del servidor y contador de tiempo en sesión.
 
 ---
 
@@ -174,6 +174,23 @@ gui:
   inspect-title: "&8Inspeccionando: &1{player}"
   online-list-title: "&8Jugadores & Staff Online"
   stats-title: "&8Stats de: &1{player}"
+
+# Configuración de Scoreboard (Exclusivo para Staff Mode)
+scoreboard:
+  enabled: true
+  title: "&b&lSPAZIO STAFF"
+  lines:
+    - "&7&m------------------------"
+    - "&fStaff: &a{player}"
+    - "&fModo Staff: &a{staffmode}"
+    - "&fVanish: {vanish}"
+    - ""
+    - "&fJugadores: &b{online}&7/&b{max_online}"
+    - "&fStaffs Online: &e{staff_online}"
+    - ""
+    - "&fTPS: {tps}"
+    - "&fTiempo en Sesión: &d{session_time}"
+    - "&7&m------------------------"
 ```
 
 ---

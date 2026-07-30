@@ -11,6 +11,8 @@ import network.minespazio.spaziostaff.listeners.FreezeListener;
 import network.minespazio.spaziostaff.listeners.GUIListener;
 import network.minespazio.spaziostaff.listeners.StaffModeListener;
 import network.minespazio.spaziostaff.listeners.VanishListener;
+import network.minespazio.spaziostaff.scoreboard.ScoreboardManager;
+import network.minespazio.spaziostaff.scoreboard.TpsTracker;
 import network.minespazio.spaziostaff.staffmode.StaffModeManager;
 import network.minespazio.spaziostaff.vanish.VanishManager;
 import org.bukkit.Bukkit;
@@ -29,6 +31,7 @@ public class SpazioStaff extends JavaPlugin {
     private VanishManager vanishManager;
     private FreezeManager freezeManager;
     private StaffModeManager staffModeManager;
+    private ScoreboardManager scoreboardManager;
 
     private final Set<UUID> spyUsers = new HashSet<>();
 
@@ -41,6 +44,8 @@ public class SpazioStaff extends JavaPlugin {
         this.vanishManager = new VanishManager(this);
         this.freezeManager = new FreezeManager(this);
         this.staffModeManager = new StaffModeManager(this);
+        this.scoreboardManager = new ScoreboardManager(this);
+        new TpsTracker(this);
 
         // Register commands
         if (getCommand("cmdspy") != null) {
@@ -114,6 +119,10 @@ public class SpazioStaff extends JavaPlugin {
 
     public StaffModeManager getStaffModeManager() {
         return staffModeManager;
+    }
+
+    public ScoreboardManager getScoreboardManager() {
+        return scoreboardManager;
     }
 
     public boolean isSpyEnabled(Player player) {

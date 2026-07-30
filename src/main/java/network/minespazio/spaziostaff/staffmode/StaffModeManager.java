@@ -44,6 +44,9 @@ public class StaffModeManager {
             // Give staff items
             giveStaffItems(player);
 
+            // Enable staff scoreboard
+            plugin.getScoreboardManager().enableStaffScoreboard(player);
+
             player.sendMessage(plugin.getConfigManager().getMsg("staffmode.enabled", "&aModo Staff ACTIVADO."));
         } else {
             if (!isInStaffMode(player)) return;
@@ -52,6 +55,9 @@ public class StaffModeManager {
             if (plugin.getVanishManager().isVanished(player)) {
                 plugin.getVanishManager().setVanished(player, false);
             }
+
+            // Disable staff scoreboard
+            plugin.getScoreboardManager().disableStaffScoreboard(player);
 
             // Restore player data
             StaffInventoryData data = savedData.remove(player.getUniqueId());
