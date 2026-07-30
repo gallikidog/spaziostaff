@@ -117,7 +117,7 @@ scoreboard:
   lines:
     - "&7&m------------------------"
     - "&fStaff: &a{player}"
-    - "&fRango: &e{rank}"
+    - "&fRango: {prefix}"
     - "&fModo Staff: &a{staffmode}"
     - "&fVanish: {vanish}"
     - ""

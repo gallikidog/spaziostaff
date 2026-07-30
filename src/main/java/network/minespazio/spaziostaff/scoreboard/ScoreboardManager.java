@@ -118,6 +118,10 @@ public class ScoreboardManager implements Listener {
                 team.addEntry(entry);
             }
 
+            if (formattedLine.length() > 256) {
+                formattedLine = formattedLine.substring(0, 256);
+            }
+
             team.setPrefix(formattedLine);
             obj.getScore(entry).setScore(score);
             score--;
@@ -141,9 +145,11 @@ public class ScoreboardManager implements Listener {
         String sessionTime = formatDuration(sessionMillis);
 
         String rank = network.minespazio.spaziostaff.hooks.LuckPermsHook.getRank(player);
+        String userPrefix = network.minespazio.spaziostaff.hooks.LuckPermsHook.getPrefix(player);
 
         String formatted = text
                 .replace("{player}", player.getName())
+                .replace("{prefix}", userPrefix)
                 .replace("{rank}", rank)
                 .replace("{group}", rank)
                 .replace("{staffmode}", "&aActivado")
@@ -155,6 +161,7 @@ public class ScoreboardManager implements Listener {
                 .replace("{session_time}", sessionTime)
                 .replace("{playtime}", sessionTime);
 
+        // Apply PlaceholderAPI if available
         formatted = network.minespazio.spaziostaff.hooks.LuckPermsHook.setPlaceholders(player, formatted);
 
         return color(formatted);
