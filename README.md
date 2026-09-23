@@ -1,67 +1,63 @@
-# SpazioStaff 🛡️
+# SpazioStaff - Staff System & CommandSpy Core
 
-**SpazioStaff** es un plugin de Staff System y Command Spy completo, optimizado y altamente configurable para servidores de Minecraft **Spigot / Paper (1.20 - 1.21+)**.
-
-Inspirado en los mejores sistemas de administración como *AquaCore*, ofrece herramientas avanzadas para la supervisión y control de jugadores en tiempo real.
+**SpazioStaff** es un plugin integral de administración y moderación para servidores de Minecraft **Spigot / Paper 1.20 - 1.21+**, diseñado por **MineSpazio Network**. Integra un sistema completo de Staff Mode con ítems interactivos de inspección, Vanish, Freeze/SS, CommandSpy en tiempo real, Scoreboard de métricas para moderadores, e integración de alta prioridad de **StaffChat**.
 
 ---
 
 ## 🌟 Características Principales
 
-- 🛠️ **Modo Staff (`/mod`, `/staffmode`, `/staff`)**:
-  - Entra en modo administración con un solo comando.
-  - Guarda tu inventario completo, armadura, nivel de experiencia, modo de juego y estado de vuelo al activar Staff Mode, y lo restaura de forma intacta al salir.
-  - Otorga una hotbar personalizada de ítems administrativos.
-
-- 👻 **Sistema de Vanish (`/vanish`, `/v`)**:
-  - Hazte completamente invisible para los jugadores normales.
-  - Los miembros del Staff con permiso pueden ver a otros staffs en Vanish.
-  - Totalmente configurable desde la `config.yml`.
-
-- 🧊 **Sistema de Freeze (`/freeze`, `/unfreeze`, `/ss`)**:
-  - Congela a jugadores sospechosos de usar trampas (hacks/cheats).
-  - Bloquea movimiento, ataques, recibir daño, romper/colocar bloques, tirar o recoger ítems e interactuar con inventarios.
-  - Muestra un mensaje y título de advertencia en pantalla al jugador congelado ("*Si te desconectas serás sancionado*").
-  - **Alerta de Desconexión**: Notifica a todo el staff si un jugador congelado abandona el servidor durante la revisión.
-
-- 🧭 **Brújula Phase**:
-  - Telepórtate o traspasa paredes, bloques y estructuras en la dirección que estás mirando con un solo click.
-
-- 🔍 **Inspeccionador de Inventario en Vivo (GUI)**:
-  - Visualiza el inventario completo de cualquier jugador en tiempo real.
-  - Muestra la armadura equipada (Casco, Pechera, Pantalones, Botas), ítem en la mano secundaria y un resumen con su Vida, Comida, Ping, Modo de juego y Coordenadas.
-
-- 📊 **Menú de Stats de Jugador (GUI)**:
-  - Inspecciona las estadísticas completas de un jugador (Vida, Comida, Ping, Modo de juego, Mundo, Coordenadas, Dirección IP y estado de Freeze).
-  - Botones de acción rápida: **Teletransportarse al jugador**, **Inspeccionar Inventario** y **Congelar / Descongelar**.
-
-- 👥 **Menú de Staff y Jugadores Online (GUI)**:
-  - Lista interactiva con las cabezas de textura (`PLAYER_HEAD`) de todos los miembros del Staff y usuarios conectados.
-  - Al hacer click en la cabeza de cualquier jugador se abre directamente su menú de estadísticas con la opción de teletransportarte hacia él.
-
-- 🦅 **Teleport Aleatorio (Random TP)**:
-  - Ítem de pluma que te teletransporta instantáneamente a un jugador en línea no-staff al azar.
-
-- 📊 **Scoreboard de Staff Exclusiva**:
-  - Aparece de forma automática únicamente al activar el Modo Staff y se restaura el scoreboard anterior al desactivarlo.
-  - Muestra tu Rango de **LuckPerms** (`{rank}` / `{group}`), estado del Modo Staff, estado de Vanish, jugadores online, staffs online, TPS en tiempo real del servidor y tiempo en sesión.
-  - Integración nativa con **PlaceholderAPI** (soporta `%luckperms_primary_group_name%`, `%luckperms_prefix%`, etc.).
+- 🛡️ **Staff Mode (`/staff`)**: Entra en modo moderador conservando tu inventario original intacto. Otorga una barra de herramientas de acceso rápido (Freeze, Inspect GUI, Stats GUI, Phase Compass, Random TP, Online List).
+- 💬 **StaffChat (`/sc`, `/staffchat`)**: Canal de chat privado y exclusivo para el equipo de Staff. Soporta formato por prefijos de LuckPerms, sonidos personalizables y toggle de chat. **Sobreescribe con máxima prioridad (`HIGHEST`) cualquier otro plugin que contenga el comando `/sc`**.
+- 🕵️ **CommandSpy (`/cmdspy`)**: Visualiza en tiempo real los comandos ejecutados por otros jugadores. Ignora automáticamente comandos sensibles como contraseñas (`/login`, `/register`, `/pass`).
+- 👻 **Vanish (`/v`, `/vanish`)**: Invisibilidad completa frente a jugadores normales. Los miembros del staff pueden verse entre sí si está habilitado en la configuración.
+- 🧊 **Freeze / SS (`/freeze`, `/unfreeze`)**: Congela a jugadores sospechosos durante revisiones. Bloquea movimiento, comandos, bloqueos e inventarios con mensajes de advertencia configurables.
+- 📊 **Scoreboard de Métricas**: Muestra en pantalla el estado del Staff, TPS del servidor, cantidad de staffs online, jugadores conectados y tiempo de sesión activa.
+- 🔍 **Inspección de Inventarios y Stats GUIs**: Inspecciona el inventario, armadura, salud, nivel, dirección IP y coordenadas de cualquier jugador mediante menús interactivos.
 
 ---
 
-## 📜 Comandos y Permisos
+## 📜 Lista Completa de Comandos y Alias
 
-| Comando | Aliases | Descripción | Permiso | Por defecto |
-| :--- | :--- | :--- | :--- | :--- |
-| `/cmdspy [on\|off]` | `/cspy`, `/commandspy` | Activa o desactiva la observación de comandos. | `spaziostaff.cmdspy` | OP |
-| `/staffmode [jugador]` | `/mod`, `/staff` | Entra o sale del Modo Staff (o altera el de otro). | `spaziostaff.staffmode` | OP |
-| `/vanish [on\|off]` | `/v` | Activa o desactiva la invisibilidad en el servidor. | `spaziostaff.vanish` | OP |
-| `/freeze <jugador>` | `/ss`, `/freezear` | Congela a un jugador para revisión de hacks. | `spaziostaff.freeze` | OP |
-| `/unfreeze <jugador>`| `/unss`, `/desfreezear` | Descongela a un jugador previamente sancionado. | `spaziostaff.freeze` | OP |
+| Comando | Alias | Descripción | Permiso |
+| :--- | :--- | :--- | :--- |
+| `/staffchat [mensaje]` | `/sc`, `/schat` | Envía un mensaje privado al StaffChat o conmuta el modo automático (toggle). **Antepuesto con máxima prioridad sobre otros plugins**. | `spaziostaff.staffchat` (o `spaziostaff.sc`) |
+| `/staffmode [jugador]` | `/mod`, `/staff` | Entra o sale del Modo Staff (guarda/restaura inventario, equipa hotbar de moderación y scoreboard). | `spaziostaff.staffmode` |
+| `/vanish [on\|off]` | `/v` | Activa o desactiva el modo invisible frente a jugadores ordinarios. | `spaziostaff.vanish` |
+| `/freeze <jugador>` | `/ss`, `/freezear` | Congela a un jugador para revisión, impidiéndole moverse o desconectarse. | `spaziostaff.freeze` |
+| `/unfreeze <jugador>` | `/unss`, `/desfreezear` | Descongela a un jugador previamente sancionado/revisado. | `spaziostaff.freeze` |
+| `/cmdspy [on\|off]` | `/cspy`, `/commandspy` | Activa o desactiva la supervisión de comandos en tiempo real. | `spaziostaff.cmdspy` |
 
 ---
 
-## ⚙️ Configuración (`config.yml`)
+## 🔑 Tabla Completa de Permisos
+
+| Permiso | Descripción | Por Defecto |
+| :--- | :--- | :--- |
+| `spaziostaff.staffchat` | Permite enviar, recibir y usar el StaffChat (`/sc`). | `OP` |
+| `spaziostaff.sc` | Alias alternativo para acceder al StaffChat (`/sc`). | `OP` |
+| `spaziostaff.staffmode` | Permite entrar en Modo Staff (`/staff`) y ver el Scoreboard. | `OP` |
+| `spaziostaff.vanish` | Permite usar Vanish (`/v`) y ver a otros miembros invisibles. | `OP` |
+| `spaziostaff.freeze` | Permite congelar y descongelar jugadores (`/freeze`, `/unfreeze`). | `OP` |
+| `spaziostaff.cmdspy` | Permite activar y visualizar el CommandSpy (`/cmdspy`). | `OP` |
+| `spaziostaff.admin` | Permiso de administración total sobre todas las funciones del plugin. | `OP` |
+
+---
+
+## 🎒 Barra de Herramientas del Modo Staff (Hotbar Items)
+
+Al activar `/staffmode`, recibes las siguientes herramientas configurables en `config.yml`:
+
+1. **Slot 0 - Vanish Toggle (`LIME_DYE` / `GRAY_DYE`)**: Alterna visibilidad en tiempo real.
+2. **Slot 1 - Freeze (`PACKED_ICE`)**: Click en un jugador para congelar/descongelar instantáneamente.
+3. **Slot 2 - Phase Compass (`COMPASS`)**: Click para atravesar muros y bloques en la dirección de la mirada.
+4. **Slot 4 - Inspect GUI (`BOOK`)**: Click en un jugador para abrir su inventario, armadura y salud en una GUI.
+5. **Slot 6 - Stats GUI (`NETHER_STAR`)**: Click en un jugador para consultar sus métricas y dirección IP.
+6. **Slot 7 - Online List (`PLAYER_HEAD`)**: Abre un menú con la lista de jugadores y moderadores conectados.
+7. **Slot 8 - Random TP (`FEATHER`)**: Teletransporte aleatorio instantáneo a un jugador activo.
+
+---
+
+## ⚙️ Configuración por Defecto (`config.yml`)
 
 ```yaml
 # Configuración General de SpazioStaff
@@ -71,6 +67,18 @@ messages:
   no-permission: "&cNo tienes permisos para usar este comando."
   only-players: "&cEste comando solo puede ser ejecutado por jugadores."
   player-not-found: "&cJugador no encontrado o desconectado."
+
+# Staff Chat
+staffchat:
+  format: "&8[&c&lSTAFFCHAT&8] &7{prefix}&f{player}&7: &e{message}"
+  toggle-enabled: "&aModo StaffChat &eACTIVADO&a. Todos tus mensajes irán al StaffChat."
+  toggle-disabled: "&cModo StaffChat &eDESACTIVADO&c. Tus mensajes volverán al chat público."
+  no-permission: "&cNo tienes permisos para usar el StaffChat."
+  sound:
+    enabled: true
+    name: "ENTITY_EXPERIENCE_ORB_PICKUP"
+    volume: 1.0
+    pitch: 1.0
 
 # Command Spy
 cmdspy:
@@ -87,8 +95,6 @@ ignored-commands:
   - "/register"
   - "/pass"
   - "/changepassword"
-  - "/l"
-  - "/reg"
 
 # Vanish
 vanish:
@@ -108,103 +114,16 @@ freeze:
   frozen-staff-notify: "&aHas congelado a &e{player}&a."
   unfrozen-staff-notify: "&aHas descongelado a &e{player}&a."
   cannot-move: "&c&lPROHIBIDO MOVERTE: &cEstas congelado."
-
-# Staff Mode Items & Setup
-staffmode:
-  enabled: "&aModo Staff ACTIVADO."
-  disabled: "&cModo Staff DESACTIVADO."
-  
-  items:
-    vanish-on:
-      slot: 0
-      material: "LIME_DYE"
-      name: "&a&lVanish: ACTIVADO &7(Click derecho)"
-      lore:
-        - "&7Click derecho para hacerte visible."
-    vanish-off:
-      slot: 0
-      material: "GRAY_DYE"
-      name: "&c&lVanish: DESACTIVADO &7(Click derecho)"
-      lore:
-        - "&7Click derecho para hacerte invisible."
-    
-    freeze:
-      slot: 1
-      material: "PACKED_ICE"
-      name: "&b&lCongelar Jugador &7(Click en Jugador)"
-      lore:
-        - "&7Click en un jugador para congelarlo o descongelarlo."
-
-    phase:
-      slot: 2
-      material: "COMPASS"
-      name: "&e&lBrújula Phase &7(Click derecho/izquierdo)"
-      lore:
-        - "&7Click para traspasar bloques/paredes."
-
-    inspect:
-      slot: 4
-      material: "BOOK"
-      name: "&6&lInspeccionar Inventario &7(Click en Jugador)"
-      lore:
-        - "&7Click en un jugador para ver su inventario y armadura."
-
-    stats:
-      slot: 6
-      material: "NETHER_STAR"
-      name: "&d&lStats del Jugador &7(Click en Jugador)"
-      lore:
-        - "&7Click en un jugador para ver sus estadísticas."
-
-    online-list:
-      slot: 7
-      material: "PLAYER_HEAD"
-      name: "&3&lLista de Staff y Jugadores &7(Click derecho)"
-      lore:
-        - "&7Abre el menú de jugadores y staff online."
-
-    random-tp:
-      slot: 8
-      material: "FEATHER"
-      name: "&9&lTeleport Aleatorio &7(Click derecho)"
-      lore:
-        - "&7Telepórtate a un jugador aleatorio."
-
-# Configuración de GUIs
-gui:
-  inspect-title: "&8Inspeccionando: &1{player}"
-  online-list-title: "&8Jugadores & Staff Online"
-  stats-title: "&8Stats de: &1{player}"
-
-# Configuración de Scoreboard (Exclusivo para Staff Mode)
-scoreboard:
-  enabled: true
-  title: "&b&lSPAZIO STAFF"
-  lines:
-    - "&7&m------------------------"
-    - "&fStaff: &a{player}"
-    - "&fRango: &e{rank}"
-    - "&fModo Staff: &a{staffmode}"
-    - "&fVanish: {vanish}"
-    - ""
-    - "&fJugadores: &b{online}&7/&b{max_online}"
-    - "&fStaffs Online: &e{staff_online}"
-    - ""
-    - "&fTPS: {tps}"
-    - "&fTiempo en Sesión: &d{session_time}"
-    - "&7&m------------------------"
 ```
 
 ---
 
-## 🏗️ Compilación e Instalación
+## 🛠️ Compilación e Instalación
 
-### Requisitos:
-- Java 17 o superior.
-- Servidor Spigot / Paper 1.20 o superior.
-
-### Pasos:
-1. Descarga el archivo `.jar` compilado desde la sección de **[Releases](https://github.com/gallikidog/spaziostaff/releases)**.
-2. Coloca el archivo `SpazioStaff-1.0.0.jar` en la carpeta `/plugins/` de tu servidor.
-3. Inicia o reinicia el servidor.
-4. ¡Disfruta de la mejor experiencia administrativa en tu servidor!
+1. Requisitos: JDK 17 o superior.
+2. Compilar con Maven:
+   ```bash
+   mvn clean package
+   ```
+3. El archivo comprimido compilado se generará en:
+   `target/SpazioStaff-1.1.0.jar`

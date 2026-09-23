@@ -6,6 +6,18 @@ messages:
   only-players: "&cEste comando solo puede ser ejecutado por jugadores."
   player-not-found: "&cJugador no encontrado o desconectado."
 
+# Staff Chat
+staffchat:
+  format: "&8[&c&lSTAFFCHAT&8] &7{prefix}&f{player}&7: &e{message}"
+  toggle-enabled: "&aModo StaffChat &eACTIVADO&a. Todos tus mensajes irán al StaffChat."
+  toggle-disabled: "&cModo StaffChat &eDESACTIVADO&c. Tus mensajes volverán al chat público."
+  no-permission: "&cNo tienes permisos para usar el StaffChat."
+  sound:
+    enabled: true
+    name: "ENTITY_EXPERIENCE_ORB_PICKUP"
+    volume: 1.0
+    pitch: 1.0
+
 # Command Spy
 cmdspy:
   prefix: "&7[&cCommandSpy&7] "

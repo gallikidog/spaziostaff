@@ -1,5 +1,5 @@
 name: SpazioStaff
-version: 1.0.0
+version: 1.1.0
 main: network.minespazio.spaziostaff.SpazioStaff
 api-version: '1.20'
 description: Plugin de Staff System y Command Spy completo para Spigot/Paper.
@@ -36,6 +36,12 @@ commands:
     usage: /unfreeze <jugador>
     permission: spaziostaff.freeze
     permission-message: "&cNo tienes permiso para utilizar este comando."
+  staffchat:
+    description: Canal de chat privado exclusivo para el equipo de Staff.
+    aliases: [sc, schat]
+    usage: /staffchat [mensaje]
+    permission: spaziostaff.staffchat
+    permission-message: "&cNo tienes permiso para utilizar este comando."
 
 permissions:
   spaziostaff.cmdspy:
@@ -49,5 +55,8 @@ permissions:
     default: op
   spaziostaff.freeze:
     description: Permite congelar o descongelar jugadores.
+    default: op
+  spaziostaff.staffchat:
+    description: Permite usar y recibir mensajes del StaffChat.
     default: op
 

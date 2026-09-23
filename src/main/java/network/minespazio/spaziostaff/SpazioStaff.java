@@ -2,6 +2,7 @@ package network.minespazio.spaziostaff;
 
 import network.minespazio.spaziostaff.commands.CommandSpyCommand;
 import network.minespazio.spaziostaff.commands.FreezeCommand;
+import network.minespazio.spaziostaff.commands.StaffChatCommand;
 import network.minespazio.spaziostaff.commands.StaffModeCommand;
 import network.minespazio.spaziostaff.commands.VanishCommand;
 import network.minespazio.spaziostaff.config.ConfigManager;
@@ -9,10 +10,12 @@ import network.minespazio.spaziostaff.freeze.FreezeManager;
 import network.minespazio.spaziostaff.listeners.CommandListener;
 import network.minespazio.spaziostaff.listeners.FreezeListener;
 import network.minespazio.spaziostaff.listeners.GUIListener;
+import network.minespazio.spaziostaff.listeners.StaffChatListener;
 import network.minespazio.spaziostaff.listeners.StaffModeListener;
 import network.minespazio.spaziostaff.listeners.VanishListener;
 import network.minespazio.spaziostaff.scoreboard.ScoreboardManager;
 import network.minespazio.spaziostaff.scoreboard.TpsTracker;
+import network.minespazio.spaziostaff.staffchat.StaffChatManager;
 import network.minespazio.spaziostaff.staffmode.StaffModeManager;
 import network.minespazio.spaziostaff.vanish.VanishManager;
 import org.bukkit.Bukkit;
@@ -32,6 +35,7 @@ public class SpazioStaff extends JavaPlugin {
     private FreezeManager freezeManager;
     private StaffModeManager staffModeManager;
     private ScoreboardManager scoreboardManager;
+    private StaffChatManager staffChatManager;
 
     private final Set<UUID> spyUsers = new HashSet<>();
 
@@ -45,6 +49,7 @@ public class SpazioStaff extends JavaPlugin {
         this.freezeManager = new FreezeManager(this);
         this.staffModeManager = new StaffModeManager(this);
         this.scoreboardManager = new ScoreboardManager(this);
+        this.staffChatManager = new StaffChatManager(this);
         new TpsTracker(this);
 
         // Register commands
@@ -76,6 +81,12 @@ public class SpazioStaff extends JavaPlugin {
             getCommand("unfreeze").setTabCompleter(freezeCmd);
         }
 
+        if (getCommand("staffchat") != null) {
+            StaffChatCommand scCmd = new StaffChatCommand(this);
+            getCommand("staffchat").setExecutor(scCmd);
+            getCommand("staffchat").setTabCompleter(scCmd);
+        }
+
         // Register events
         PluginManager pm = getServer().getPluginManager();
         pm.registerEvents(new CommandListener(this), this);
@@ -83,6 +94,7 @@ public class SpazioStaff extends JavaPlugin {
         pm.registerEvents(new FreezeListener(this), this);
         pm.registerEvents(new VanishListener(this), this);
         pm.registerEvents(new GUIListener(this), this);
+        pm.registerEvents(new StaffChatListener(this), this);
 
         getLogger().info("SpazioStaff ha sido activado correctamente.");
     }
@@ -123,6 +135,10 @@ public class SpazioStaff extends JavaPlugin {
 
     public ScoreboardManager getScoreboardManager() {
         return scoreboardManager;
+    }
+
+    public StaffChatManager getStaffChatManager() {
+        return staffChatManager;
     }
 
     public boolean isSpyEnabled(Player player) {
