@@ -126,4 +126,4 @@ freeze:
    mvn clean package
    ```
 3. El archivo comprimido compilado se generará en:
-   `target/SpazioStaff-1.1.0.jar`
+   `target/SpazioStaff-1.1.1.jar`

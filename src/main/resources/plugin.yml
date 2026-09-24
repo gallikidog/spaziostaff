@@ -1,5 +1,5 @@
 name: SpazioStaff
-version: 1.1.0
+version: 1.1.1
 main: network.minespazio.spaziostaff.SpazioStaff
 api-version: '1.20'
 description: Plugin de Staff System y Command Spy completo para Spigot/Paper.

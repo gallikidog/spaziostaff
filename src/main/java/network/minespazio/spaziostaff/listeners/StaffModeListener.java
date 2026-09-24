@@ -11,14 +11,20 @@ import org.bukkit.Sound;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
+import org.bukkit.GameMode;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerGameModeChangeEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
@@ -226,6 +232,71 @@ public class StaffModeListener implements Listener {
             if (plugin.getStaffModeManager().isInStaffMode(p) && event.getClickedInventory() == p.getInventory()) {
                 event.setCancelled(true);
             }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    public void onGameModeChange(PlayerGameModeChangeEvent event) {
+        Player player = event.getPlayer();
+        if (plugin.getStaffModeManager().isInStaffMode(player)) {
+            if (event.getNewGameMode() != GameMode.CREATIVE) {
+                event.setCancelled(true);
+                player.setGameMode(GameMode.CREATIVE);
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void onChangedWorld(PlayerChangedWorldEvent event) {
+        Player player = event.getPlayer();
+        if (plugin.getStaffModeManager().isInStaffMode(player)) {
+            player.setGameMode(GameMode.CREATIVE);
+            player.setAllowFlight(true);
+            player.setFlying(true);
+            plugin.getStaffModeManager().giveStaffItems(player);
+
+            if (plugin.getVanishManager().isVanished(player)) {
+                plugin.getVanishManager().updateVanishState(player, true);
+            }
+
+            // Fallback for world plugins (e.g., Multiverse-Core) that reset gamemode 1 tick post-transition
+            Bukkit.getScheduler().runTaskLater(plugin, () -> {
+                if (player.isOnline() && plugin.getStaffModeManager().isInStaffMode(player)) {
+                    if (player.getGameMode() != GameMode.CREATIVE) {
+                        player.setGameMode(GameMode.CREATIVE);
+                    }
+                    player.setAllowFlight(true);
+                    player.setFlying(true);
+                    plugin.getStaffModeManager().giveStaffItems(player);
+                    if (plugin.getVanishManager().isVanished(player)) {
+                        plugin.getVanishManager().updateVanishState(player, true);
+                    }
+                }
+            }, 1L);
+        }
+    }
+
+    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    public void onTeleport(PlayerTeleportEvent event) {
+        Player player = event.getPlayer();
+        if (plugin.getStaffModeManager().isInStaffMode(player)) {
+            Bukkit.getScheduler().runTaskLater(plugin, () -> {
+                if (player.isOnline() && plugin.getStaffModeManager().isInStaffMode(player)) {
+                    if (player.getGameMode() != GameMode.CREATIVE) {
+                        player.setGameMode(GameMode.CREATIVE);
+                    }
+                    player.setAllowFlight(true);
+                    player.setFlying(true);
+                }
+            }, 1L);
+        }
+    }
+
+    @EventHandler
+    public void onPlayerQuit(PlayerQuitEvent event) {
+        Player player = event.getPlayer();
+        if (plugin.getStaffModeManager().isInStaffMode(player)) {
+            plugin.getStaffModeManager().setStaffMode(player, false);
         }
     }
 }
